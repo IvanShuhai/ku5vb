@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd ~
-yum erase -y  kernel-tools*
 
 yum install -y http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
 
@@ -20,7 +19,9 @@ yum install -y  centos-release-scl
 yum install -y  devtoolset-8
 source /opt/rh/devtoolset-8/enable
 
-yum --enablerepo elrepo-kernel install kernel-ml.x86_64 kernel-ml-devel.x86_64 kernel-ml-headers.x86_64 kernel-ml-tools.x86_64 kernel-ml-tools-libs.x86_64 kernel-ml-tools-libs-devel.x86_64
+yum erase -y  kernel-devel* kernel-headers-3*  kernel-tools*
+
+yum --enablerepo elrepo-kernel install -y  kernel-ml.x86_64 kernel-ml-devel.x86_64 kernel-ml-headers.x86_64 kernel-ml-tools.x86_64 kernel-ml-tools-libs.x86_64 kernel-ml-tools-libs-devel.x86_64
 
 grub2-mkconfig -o /boot/grub2/grub.cfg && grub2-set-default 0
 

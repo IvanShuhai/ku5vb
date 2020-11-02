@@ -23,9 +23,6 @@ history -c
 
 rm -rf /run/log/journal/*
 
-# Fill zeros all empty space
-dd if=/dev/zero of=/EMPTY bs=1M
 rm -f /EMPTY
 sync
-grub2-set-default 1
-echo "###   Hi from secone stage" >> /boot/grub2/grub.cfg
+grub2-set-default 0
